@@ -19,15 +19,18 @@ auto = pygame.image.load('auto_lihtne.png') # mõõtmed 136x190
 autovastu = pygame.image.load('auto_vastu.png')
 
 #autode algpositsioonid
-# punane auto
+# mängija auto
 x = 332
 y = 580
-#vasakpoolne rida, sinine auto
+#vasakpoolne rida, vastutulev auto
 x1 = 172
 y1 = -200
-#parempoolne rida, sinine auto
+#parempoolne rida, vastutulev auto
 x2 = 492
 y2 = -200
+
+#vastutulevate autode kiirus
+kiirus = 4
        
 auto_asukohad = [(172,520), (332,520), (492,520)]
 
@@ -63,16 +66,26 @@ while main == True:
     
     # autod liiguvad suvaliselt
     if y1 < 800: # kui auto peab veel alla sõitma
-        y1 += 5
+        y1 += kiirus
     elif y1 >= 800: # kui auto on alla jõudnud
         x1 = auto_asukohad[random.randint(0,2)][0] # valib suvalise rea
+        while x1 == x2: # kui real on juba auto, valib uue rea
+            x1 = auto_asukohad[random.randint(0,2)][0]
         y1 = -200
         
     if y2 < 800: # kui auto peab veel alla sõitma
-        y2 += 5
+        y2 += kiirus
     elif y2 >= 800: # kui auto on alla jõudnud
         x2 = auto_asukohad[random.randint(0,2)][0] # valib suvalise rea
+        while x2 == x1: # kui real on juba auto, valib uue rea
+            x2 = auto_asukohad[random.randint(0,2)][0]
         y2 = -800
+    
+    #autod hakkavad kiiremini vastu tulema 
+    if sekundid > 15:
+        kiirus = 5
+    if sekundid > 30:
+        kiirus = 6
         
     #kui vastutulev auto sõidab otsa
     if (x1 == x and y1 >= 390 and y1 <= 710) or (x2 == x and y2 >= 390 and y2 <= 710): # kui ühe vastutuleva auto rida on sama punase auto omaga
