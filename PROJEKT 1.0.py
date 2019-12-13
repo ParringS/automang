@@ -12,7 +12,7 @@ pidevjoon2 = pygame.Rect(478,0,4,800)
 # taimer
 võtab_aega = pygame.time.get_ticks() 
 sekundid = (pygame.time.get_ticks()-võtab_aega) / 1000
-taimeri_font = pygame.font.Font(None, 40)
+taimeri_font = pygame.font.Font('Quicksand-VariableFont_wght.ttf', 40)
 taimer_pildina = taimeri_font.render(str(sekundid), 1, [0,0,0])
 
 auto = pygame.image.load('auto_lihtne.png') # mõõtmed 136x190
@@ -39,7 +39,7 @@ f = open('parim_aeg.txt')
 parim_tulemus = float(f.read())
 f.close()
 parima_tulemuse_tekst = 'Parim: ' + str(parim_tulemus)
-parima_font = pygame.font.Font(None, 20)
+parima_font = pygame.font.Font('Quicksand-VariableFont_wght.ttf', 20)
 parim_ekraanil = parima_font.render(parima_tulemuse_tekst, 1, [0,0,0])
 
 
