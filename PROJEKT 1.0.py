@@ -160,6 +160,7 @@ while main == True:
                 if x < 492: # et ei sõidaks paremalt teelt välja
                     x += 160
                     ekraani_pind.blit(auto, (x, y))     
-    clock.tick(120)
+    
+    clock.tick(120) # määrab mitu tsükklit sekundis
 
 pygame.quit()
