@@ -41,6 +41,9 @@ y1 = -200
 #parempoolne rida, vastutulev auto
 x2 = 492
 y2 = -200
+#täheke, alustab keskel
+xt = 332
+yt = -50
 
 kiirus = 4 #vastutulevate autode kiirus
        
@@ -59,6 +62,8 @@ elud = 1
 elude_font = pygame.font.Font('Quicksand-VariableFont_wght.ttf', 30)
 elusid_alles = elude_font.render(('Elusid: ' + str(elud)), 1, [0,0,0])
 
+#kontrollime programmi kiirust
+clock = pygame.time.Clock()
 
 #mängu põhiosa
 while main == True:
@@ -122,18 +127,22 @@ while main == True:
                 print('Siiani parim tulemus on', str(parim_tulemus) + '. Proovi veel, kas sul õnnestub seda ületada.')
         else:
             elud -= 1
+            if x1 == x:
+                y1 = -200
+            if x2 == x:
+                y2 = -200
               
-              
-    # täht tuleb aeglasemalt kui autod ja suvalise intervalliga
-    if sekundid > 5:
+    # täht tuleb aeglasemalt kui autod
+    if sekundid > 5: #esimene täht tuleb 5. sekundil
         yt += 3
-    if -0.1 < sekundid % 20 < 0.1:
+    if 0 <= sekundid % 20 <= 0.1: #järgmised tähed tulevad iga 20 sekundit
         yt = -50
         xt = auto_asukohad[random.randint(0,2)][0]
               
     #kui auto saab kätte tähekese
-    if (xt == x and yt >= 390 and yt <= 710) or (xt == x and yt >= 390 and yt <= 710):
+    if (xt == x and yt >= 530 and yt <= 790):
         elud += 1
+        xt=850
        
     
     #auto liigutamine paremale-vasakule
@@ -151,6 +160,6 @@ while main == True:
                 if x < 492: # et ei sõidaks paremalt teelt välja
                     x += 160
                     ekraani_pind.blit(auto, (x, y))     
-
+    clock.tick(120)
 
 pygame.quit()
