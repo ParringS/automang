@@ -128,9 +128,9 @@ while main == True:
         else:
             elud -= 1
             if x1 == x:
-                y1 = -200
+                y1 = 800
             if x2 == x:
-                y2 = -200
+                y2 = 800
               
     # täht tuleb aeglasemalt kui autod
     if sekundid > 5: #esimene täht tuleb 5. sekundil
