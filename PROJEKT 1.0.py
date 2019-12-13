@@ -161,6 +161,6 @@ while main == True:
                     x += 160
                     ekraani_pind.blit(auto, (x, y))     
     
-    clock.tick(120) # määrab mitu tsükklit sekundis
+    clock.tick(120) #määrab mitu tsükklit sekundis
 
 pygame.quit()
