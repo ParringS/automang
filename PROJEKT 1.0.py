@@ -82,10 +82,16 @@ while main == True:
         y2 = -800
     
     #autod hakkavad kiiremini vastu tulema 
+    if sekundid > 10:
+        kiirus = 4.3
     if sekundid > 15:
-        kiirus = 5
+        kiirus = 4.6
+    if sekundid > 20:
+       kiirus = 4.9
+    if sekundid > 25:
+       kiirus = 5.2
     if sekundid > 30:
-        kiirus = 6
+       kiirus = 5.5
         
     #kui vastutulev auto sõidab otsa
     if (x1 == x and y1 >= 390 and y1 <= 710) or (x2 == x and y2 >= 390 and y2 <= 710): # kui ühe vastutuleva auto rida on sama punase auto omaga
