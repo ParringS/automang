@@ -3,7 +3,7 @@ import pygame, sys, random
 #juhised enne mängu algust shell'is
 print('\nTere tulemast mängima DOVU automängu! Sinu eesmärk on mitte sõita otsa vastutulevatele autodele.' 
       '\nLiikuda saad vasaku ja parema nooleklahviga.'
-      '\nPüüa tähekesi, need annavad sulle elusid. Kui sul on elusid rohkem, saad vastutulevatest autodest üle sõita')
+      '\nPüüa tähekesi, need annavad sulle elusid. Kui sul on elusid rohkem kui 0, saad vastutulevatele autodele otsa sõita.')
 start = input('Alustamiseks vajuta enterit')
 while start != '':
     start = input('Alustamiseks vajuta enterit')
@@ -140,9 +140,9 @@ while main == True:
         xt = auto_asukohad[random.randint(0,2)][0]
               
     #kui auto saab kätte tähekese
-    if (xt == x and yt >= 530 and yt <= 790):
+    if (xt == x and yt >= 530 and yt <= 780):
         elud += 1
-        xt=850
+        xt = 850
        
     
     #auto liigutamine paremale-vasakule
