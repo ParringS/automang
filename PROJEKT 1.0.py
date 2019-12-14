@@ -2,9 +2,11 @@ import pygame, sys, random
 
 #juhised enne mängu algust shell'is
 print('\nTere tulemast mängima DOVU automängu! Sinu eesmärk on mitte sõita otsa vastutulevatele autodele.' 
-      '\nLiikuda saad vasaku ja parema nooleklahviga.'
-      '\nPüüa tähekesi, need annavad sulle elusid. Kui sul on elusid rohkem kui 0, saad vastutulevatele autodele otsa sõita.')
-start = input('Alustamiseks vajuta enterit')
+      '\n* Liikuda saad vasaku ja parema nooleklahviga.'
+      '\n* Püüa tähekesi, need annavad sulle elusid. \n* Kui sul on elusid rohkem kui 1, saad vastutulevatele autodele otsa sõita, ilma et mäng läbi saaks.')
+
+start = input('\nAlustamiseks vajuta enterit (vihje: liiguta enne see aken paremale poole, siis on mängu ekraan kohe näha + enne mängimist kliki Pygame\'i aknal)')
+
 while start != '':
     start = input('Alustamiseks vajuta enterit')
 if start == '':
@@ -13,17 +15,17 @@ if start == '':
 
 pygame.init()
 ekraani_pind = pygame.display.set_mode( (800, 800) )
-pygame.display.set_caption('Automäng')
+pygame.display.set_caption('Automäng DOVU') #akna nimi
 
 #taust
-tee = pygame.Rect(160,0,480,800) # x koordinaat, y koordinaat, laius, kõrgus
+tee = pygame.Rect(160,0,480,800) #x-koordinaat, y-koordinaat, laius, kõrgus
 pidevjoon1 = pygame.Rect(318,0,4,800)
 pidevjoon2 = pygame.Rect(478,0,4,800)
 
 #autod ja täheke
-auto = pygame.image.load('auto_lihtne.png') # mõõtmed 136x190
+auto = pygame.image.load('auto_lihtne.png') #mõõtmed 136x190
 autovastu = pygame.image.load('auto_vastu.png')
-täht = pygame.image.load('täht.png') # mõõtmed 136x50
+täht = pygame.image.load('täht.png') #mõõtmed 136x50
 
 #taimer
 võtab_aega = pygame.time.get_ticks() 
@@ -63,12 +65,13 @@ elude_font = pygame.font.Font('Quicksand-VariableFont_wght.ttf', 30)
 elusid_alles = elude_font.render(('Elusid: ' + str(elud)), 1, [0,0,0])
 
 #kontrollime programmi kiirust
-clock = pygame.time.Clock()
+#clock = pygame.time.Clock()
+
 
 #mängu põhiosa
 while main == True:
     
-    ekraani_pind.fill((0,255,0))
+    ekraani_pind.fill((126,229,0))
     pygame.draw.rect(ekraani_pind, (120,120,120), tee)
     pygame.draw.rect(ekraani_pind, (255,255,255), pidevjoon1)
     pygame.draw.rect(ekraani_pind, (255,255,255), pidevjoon2)
@@ -90,15 +93,17 @@ while main == True:
     sekundid_uus = (pygame.time.get_ticks()-võtab_aega) / 1000
     sekundid = sekundid_uus
     
-    # autod liiguvad suvaliselt
+
+    #vastutulevad autod liiguvad suvaliselt
+    #üks vastutulev
     if y1 < 800: # kui auto peab veel alla sõitma
         y1 += kiirus
     elif y1 >= 800: # kui auto on alla jõudnud
         x1 = auto_asukohad[random.randint(0,2)][0] # valib suvalise rea
         while x1 == x2: # kui real on juba auto, valib uue rea
             x1 = auto_asukohad[random.randint(0,2)][0]
-        y1 = -200
-        
+        y1 = -200  
+    #teine vastutulev
     if y2 < 800: # kui auto peab veel alla sõitma
         y2 += kiirus
     elif y2 >= 800: # kui auto on alla jõudnud
@@ -107,20 +112,20 @@ while main == True:
             x2 = auto_asukohad[random.randint(0,2)][0]
         y2 = -800
     
-    # vastutulevate autode kiirus suureneb järjest
+    #vastutulevate autode kiirus suureneb järjest 45 sekundit
     kiirus = 0.08 * sekundid + 5
-    if sekundid > 30:
+    if sekundid > 45:
         kiirus = 0.08 * sekundid + 4
         
     #kui vastutulev auto sõidab otsa
-    if (x1 == x and y1 >= 390 and y1 <= 710) or (x2 == x and y2 >= 390 and y2 <= 710): # kui ühe vastutuleva auto rida on sama punase auto omaga
-        if elud < 1:
+    if (x1 == x and y1 >= 390 and y1 <= 710) or (x2 == x and y2 >= 390 and y2 <= 710): #kui ühe vastutuleva auto rida on sama punase auto omaga
+        if elud <= 1:
             print('\nMäng läbi! Sinu aeg oli', sekundid, 'sekundit.')
             if sekundid >= parim_tulemus:
                 main = False
                 print('See on siiani parim tulemus! Palju õnne!')
                 f_uuesti = open('parim_aeg.txt', 'w')
-                f_uuesti.write(str(sekundid)) # iga kord, kui tuleb uus parim aeg, kirjutab failis vana üle
+                f_uuesti.write(str(sekundid)) #iga kord, kui tuleb uus parim aeg, kirjutab failis vana üle
                 f_uuesti.close()
             else:
                 main = False
@@ -132,7 +137,7 @@ while main == True:
             if x2 == x:
                 y2 = 800
               
-    # täht tuleb aeglasemalt kui autod
+    #täht tuleb aeglasemalt kui autod
     if sekundid > 5: #esimene täht tuleb 5. sekundil
         yt += 3
     if 0 <= sekundid % 20 <= 0.1: #järgmised tähed tulevad iga 20 sekundit
@@ -161,6 +166,6 @@ while main == True:
                     x += 160
                     ekraani_pind.blit(auto, (x, y))     
     
-    clock.tick(120) #määrab mitu tsükklit sekundis
+    #clock.tick(120) #määrab mitu tsüklit sekundis
 
 pygame.quit()
