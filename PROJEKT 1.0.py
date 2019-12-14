@@ -89,26 +89,26 @@ while main == True:
     ekraani_pind.blit(elusid_alles, (670, 30))
     pygame.display.flip()
     
-    # taimer
+    #taimer
     sekundid_uus = (pygame.time.get_ticks()-võtab_aega) / 1000
     sekundid = sekundid_uus
     
 
     #vastutulevad autod liiguvad suvaliselt
     #üks vastutulev
-    if y1 < 800: # kui auto peab veel alla sõitma
+    if y1 < 800: #kui auto peab veel alla sõitma
         y1 += kiirus
-    elif y1 >= 800: # kui auto on alla jõudnud
+    elif y1 >= 800: #kui auto on alla jõudnud
         x1 = auto_asukohad[random.randint(0,2)][0] # valib suvalise rea
-        while x1 == x2: # kui real on juba auto, valib uue rea
+        while x1 == x2: #kui real on juba auto, valib uue rea
             x1 = auto_asukohad[random.randint(0,2)][0]
         y1 = -200  
     #teine vastutulev
-    if y2 < 800: # kui auto peab veel alla sõitma
+    if y2 < 800: #kui auto peab veel alla sõitma
         y2 += kiirus
-    elif y2 >= 800: # kui auto on alla jõudnud
-        x2 = auto_asukohad[random.randint(0,2)][0] # valib suvalise rea
-        while x2 == x1: # kui real on juba auto, valib uue rea
+    elif y2 >= 800: #kui auto on alla jõudnud
+        x2 = auto_asukohad[random.randint(0,2)][0] #valib suvalise rea
+        while x2 == x1: #kui real on juba auto, valib uue rea
             x2 = auto_asukohad[random.randint(0,2)][0]
         y2 = -800
     
@@ -158,11 +158,11 @@ while main == True:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                if x > 172: # et ei sõidaks vasakult teelt välja
+                if x > 172: #et ei sõidaks vasakult teelt välja
                     x -= 160
                     ekraani_pind.blit(auto, (x, y))
             if event.key == pygame.K_RIGHT:
-                if x < 492: # et ei sõidaks paremalt teelt välja
+                if x < 492: #et ei sõidaks paremalt teelt välja
                     x += 160
                     ekraani_pind.blit(auto, (x, y))     
     
