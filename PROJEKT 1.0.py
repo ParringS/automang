@@ -66,7 +66,7 @@ elude_font = pygame.font.Font('Quicksand-VariableFont_wght.ttf', 30)
 elusid_alles = elude_font.render(('Elusid: ' + str(elud)), 1, [0,0,0])
 
 #kontrollime programmi kiirust
-#clock = pygame.time.Clock()
+clock = pygame.time.Clock()
 
 
 #mängu põhiosa
@@ -167,6 +167,6 @@ while main == True:
                     x += 160
                     ekraani_pind.blit(auto, (x, y))     
     
-    #clock.tick(120) #määrab mitu tsüklit sekundis
+    clock.tick(120) #määrab mitu tsüklit sekundis
 
 pygame.quit()
