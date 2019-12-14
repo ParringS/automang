@@ -89,7 +89,6 @@ while main == True:
     elusid_alles = elude_font.render(('Elusid: ' + str(elud)), 1, [0,0,0])
     ekraani_pind.blit(elusid_alles, (670, 30))
     pygame.display.flip()
-    
     #taimer
     sekundid_uus = (pygame.time.get_ticks()-võtab_aega) / 1000
     sekundid = sekundid_uus
@@ -138,6 +137,7 @@ while main == True:
             if x2 == x:
                 y2 = 800
               
+                  
     #täht tuleb aeglasemalt kui autod
     if sekundid > 5: #esimene täht tuleb 5. sekundil
         yt += 3
