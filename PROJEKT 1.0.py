@@ -1,7 +1,7 @@
 import pygame, sys, random
 
 #juhised enne mängu algust shell'is
-print('\nTere tulemast mängima DOVU automängu! Sinu eesmärk on mitte sõita otsa vastutulevatele autodele.' 
+print('\nTere tulemast mängima DOVU automängu! Sinu eesmärk on vältida vastutulevatele autodele otsasõitmist.' 
       '\n* Liikuda saad vasaku ja parema nooleklahviga.'
       '\n* Püüa tähekesi, need annavad sulle elusid.' 
       '\n* Kui sul on elusid rohkem kui 1, saad vastutulevatele autodele otsa sõita, ilma et mäng läbi saaks.')
